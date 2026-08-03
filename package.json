@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "gif-encoder-2": "^1.0.5",
+    "puppeteer": "^25.4.0"
+  },
+  "allowScripts": {
+    "puppeteer@25.4.0": true
+  }
+}
