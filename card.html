@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=980"/>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 980px;
+    height: 520px;
+    overflow: hidden;
+    background: #0a1628;
+    font-family: 'Fira Code', 'Courier New', monospace;
+  }
+
+  /* ── TERMINAL WRAPPER ── */
+  .terminal {
+    width: 980px;
+    height: 520px;
+    background: #0d1b2a;
+    border: 1.5px solid rgba(34,211,238,0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── TITLE BAR ── */
+  .titlebar {
+    height: 40px;
+    background: #0b1e30;
+    border-bottom: 1px solid #1a3a5c;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .dots { display: flex; gap: 8px; }
+  .dot {
+    width: 13px; height: 13px;
+    border-radius: 50%;
+  }
+  .dot.red    { background: #ff5f57; }
+  .dot.yellow { background: #febc2e; }
+  .dot.green  { background: #28c840; }
+  .titlebar-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11.5px;
+    color: #4a7fa5;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  /* ── CONTENT AREA ── */
+  .content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ── LEFT PANEL ── */
+  .left-panel {
+    width: 370px;
+    flex-shrink: 0;
+    background: #0a1220;
+    border-right: 1px solid #1a3a5c;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .left-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── RIGHT PANEL ── */
+  .right-panel {
+    flex: 1;
+    background: #0a1628;
+    padding: 14px 16px 0 16px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header row */
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .system-info-label {
+    font-size: 11px;
+    color: #4a7fa5;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+  }
+  .live-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #ff3b3b;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+  .live-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #ff3b3b;
+    animation: blink 1.1s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.15; }
+  }
+
+  /* Email badge */
+  .email-badge {
+    display: inline-block;
+    background: #5b2d8e;
+    color: #fff;
+    font-size: 10.5px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    letter-spacing: 0.2px;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: #1a3a5c;
+    margin: 4px 0 6px 0;
+  }
+
+  /* ── ROWS CONTAINER ── */
+  .rows {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Individual row */
+  .row {
+    display: flex;
+    align-items: baseline;
+    height: 21px;
+    opacity: 0;
+  }
+  .row.section-div {
+    height: 8px;
+    opacity: 0;
+  }
+  .row.contact-header {
+    height: 21px;
+    opacity: 0;
+  }
+
+  .label {
+    font-size: 11px;
+    color: #22d3ee;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 400;
+  }
+  .label.dim { color: #4a7fa5; }
+
+  .dots-line {
+    flex: 1;
+    margin: 0 6px;
+    border-bottom: 1px dashed #1e3a52;
+    position: relative;
+    top: -3px;
+    min-width: 20px;
+  }
+
+  .value {
+    font-size: 11px;
+    color: #e2e8f0;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-align: right;
+    font-weight: 400;
+  }
+  .value.dim { color: #4a7fa5; }
+
+  /* ── SCAN LINE ── */
+  .scan-line {
+    position: absolute;
+    left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(34,211,238,0.05) 10%,
+      rgba(34,211,238,0.35) 45%,
+      rgba(34,211,238,0.55) 50%,
+      rgba(34,211,238,0.35) 55%,
+      rgba(34,211,238,0.05) 90%,
+      transparent 100%
+    );
+    height: 32px;
+    top: -32px;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 0 12px rgba(34,211,238,0.4), 0 0 4px rgba(34,211,238,0.8);
+  }
+
+  /* ── BOTTOM BAR ── */
+  .bottom-bar {
+    height: 34px;
+    border-top: 1px solid #1a3a5c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .bottom-text {
+    font-size: 11px;
+    color: #4a7fa5;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .cursor {
+    width: 8px;
+    height: 13px;
+    background: #22d3ee;
+    display: inline-block;
+    animation: cursor-blink 0.9s step-end infinite;
+  }
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="terminal">
+
+  <!-- TITLE BAR -->
+  <div class="titlebar">
+    <div class="dots">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+    </div>
+    <span class="titlebar-text">frankwuaten2572@gmail.com &nbsp;—&nbsp; % ./profile.sh --live</span>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- LEFT: GIF -->
+    <div class="left-panel">
+      <img src="system-infocard.gif" alt="visual"/>
+    </div>
+
+    <!-- RIGHT: INFO -->
+    <div class="right-panel">
+
+      <div class="panel-header">
+        <span class="system-info-label">SYSTEM.INFO</span>
+        <div class="live-badge">
+          <div class="live-dot"></div>
+          <span>LIVE</span>
+        </div>
+      </div>
+
+      <span class="email-badge">frankwuaten2572@gmail.com</span>
+
+      <div class="divider"></div>
+
+      <!-- ROWS — revealed by JS scan animation -->
+      <div class="rows" id="rows">
+        <div class="scan-line" id="scanLine"></div>
+
+        <div class="row" id="r0"><span class="label">Subject</span><div class="dots-line"></div><span class="value">Frank Emmanuel Wuaten</span></div>
+        <div class="row" id="r1"><span class="label">Role</span><div class="dots-line"></div><span class="value">Web. Developer &amp; Creative UI Designer</span></div>
+        <div class="row" id="r2"><span class="label">Origin</span><div class="dots-line"></div><span class="value">Batam, Indonesia</span></div>
+        <div class="row" id="r3"><span class="label">Education</span><div class="dots-line"></div><span class="value">Computer Science, Sam Ratulangi University</span></div>
+        <div class="row" id="r4"><span class="label">Status</span><div class="dots-line"></div><span class="value">Building &amp; Learning</span></div>
+        <div class="row" id="r5"><span class="label">Toolchain</span><div class="dots-line"></div><span class="value">VSCode, Git, Figma, AI IDE (Antigravity &amp; Kiro)</span></div>
+
+        <div class="row section-div" id="rd0"><div class="divider" style="margin:0"></div></div>
+
+        <div class="row" id="r6"><span class="label">Core. Lang</span><div class="dots-line"></div><span class="value">JavaScript, HTML, CSS</span></div>
+        <div class="row" id="r7"><span class="label">Core. Frontend</span><div class="dots-line"></div><span class="value">React, Vite, Tailwind CSS</span></div>
+        <div class="row" id="r8"><span class="label">Core. Backend</span><div class="dots-line"></div><span class="value">Node.js</span></div>
+        <div class="row" id="r9"><span class="label">Core Database</span><div class="dots-line"></div><span class="value">Supabase</span></div>
+        <div class="row" id="r10"><span class="label">Core. Infra</span><div class="dots-line"></div><span class="value">Vercel &amp; Git</span></div>
+
+        <div class="row section-div" id="rd1"><div class="divider" style="margin:0"></div></div>
+
+        <div class="row contact-header" id="r11"><span class="label dim">- Contact</span><div class="dots-line" style="border-color:#132030"></div></div>
+        <div class="row" id="r12"><span class="label">Grid. Mail</span><div class="dots-line"></div><span class="value">frankwuaten2572@gmail.com</span></div>
+        <div class="row" id="r13"><span class="label">Grid. Portofolio</span><div class="dots-line"></div><span class="value">https://portofolio-project-indol.vercel.app/</span></div>
+        <div class="row" id="r14"><span class="label">Grid Linkedin</span><div class="dots-line"></div><span class="value dim">Coming Soon</span></div>
+        <div class="row" id="r15"><span class="label">Grid. Github</span><div class="dots-line"></div><span class="value">Frankwtn</span></div>
+        <div class="row" id="r16"><span class="label">Grid. Facebook</span><div class="dots-line"></div><span class="value dim">Coming soon</span></div>
+      </div>
+
+      <!-- BOTTOM BAR -->
+      <div class="bottom-bar">
+        <div class="bottom-text">
+          • More about me &amp; projects below in README
+          <span class="cursor"></span>
+        </div>
+      </div>
+
+    </div><!-- end right-panel -->
+  </div><!-- end content -->
+</div><!-- end terminal -->
+
+<script>
+// IDs of all rows in order
+const ROW_IDS = [
+  'r0','r1','r2','r3','r4','r5',
+  'rd0',
+  'r6','r7','r8','r9','r10',
+  'rd1',
+  'r11','r12','r13','r14','r15','r16'
+];
+
+const SCAN_DURATION_MS = 3200;  // total scan time
+const IDLE_DURATION_MS = 22000; // hold before next scan
+const ROWS_CONTAINER   = document.getElementById('rows');
+const SCAN_LINE        = document.getElementById('scanLine');
+
+function getRowsContainerHeight() {
+  return ROWS_CONTAINER.getBoundingClientRect().height;
+}
+
+function easeInOut(t) {
+  return t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+}
+
+function runScan() {
+  const totalH = getRowsContainerHeight();
+  // Hide all rows
+  ROW_IDS.forEach(id => {
+    document.getElementById(id).style.opacity = '0';
+  });
+
+  // Show scan line
+  SCAN_LINE.style.display = 'block';
+  SCAN_LINE.style.top = '-32px';
+
+  const startTime = performance.now();
+
+  function step(now) {
+    const elapsed = now - startTime;
+    const t = Math.min(elapsed / SCAN_DURATION_MS, 1);
+    const te = easeInOut(t);
+    const scanY = te * (totalH + 32);
+
+    // Move scan line
+    SCAN_LINE.style.top = (scanY - 16) + 'px';
+
+    // Reveal rows that scan has passed
+    ROW_IDS.forEach(id => {
+      const el = document.getElementById(id);
+      const elTop = el.offsetTop;
+      if (elTop <= scanY - 8) {
+        el.style.opacity = '1';
+      }
+    });
+
+    if (t < 1) {
+      requestAnimationFrame(step);
+    } else {
+      // Scan done — hide scan line
+      SCAN_LINE.style.display = 'none';
+      // Schedule next scan
+      setTimeout(runScan, IDLE_DURATION_MS);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+// Start after short delay (let GIF load)
+setTimeout(runScan, 400);
+</script>
+</body>
+</html>
