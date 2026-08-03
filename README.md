@@ -21,7 +21,7 @@
 
 <!-- ===== SYSTEM INFO CARD ===== -->
 <div align="center">
-  <img width="100%" src="https://raw.githubusercontent.com/Frankwtn/Frankwtn/main/system-infocard.gif" alt="System Info Card" />
+  <img width="100%" src="https://raw.githubusercontent.com/Frankwtn/Frankwtn/main/system-infocard.svg" alt="System Info Card" />
 </div>
 
 <br/>
