@@ -1,254 +1,209 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  viewBox="0 0 1000 520" width="1000" height="520">
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 510" width="580" height="510">
   <defs>
-    <!-- Terminal background gradient -->
-    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#0d1b2a"/>
       <stop offset="100%" stop-color="#0a1628"/>
     </linearGradient>
-
-    <!-- Scan light gradient — moves top to bottom -->
-    <linearGradient id="scanLight" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#00e5ff" stop-opacity="0.13"/>
+    <linearGradient id="scan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#00e5ff" stop-opacity="0"/>
+      <stop offset="40%"  stop-color="#00e5ff" stop-opacity="0.2"/>
+      <stop offset="60%"  stop-color="#00e5ff" stop-opacity="0.2"/>
       <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
     </linearGradient>
-
-    <!-- Clip for right panel content -->
-    <clipPath id="rightClip">
-      <rect x="430" y="50" width="555" height="450"/>
-    </clipPath>
-
-    <!-- Clip for terminal window -->
-    <clipPath id="termClip">
-      <rect x="10" y="10" width="980" height="500" rx="12"/>
-    </clipPath>
   </defs>
 
-  <!-- ── TERMINAL WINDOW ── -->
-  <!-- Outer border glow -->
-  <rect x="8" y="8" width="984" height="504" rx="14"
-    fill="none" stroke="#00e5ff" stroke-width="1.5" opacity="0.5"/>
-  <!-- Main background -->
-  <rect x="10" y="10" width="980" height="500" rx="12"
-    fill="url(#bgGrad)" clip-path="url(#termClip)"/>
+  <!-- Background -->
+  <rect width="580" height="510" fill="url(#bg)"/>
 
-  <!-- Title bar -->
-  <rect x="10" y="10" width="980" height="36" rx="12" fill="#0d1b2a"/>
-  <rect x="10" y="32" width="980" height="14" fill="#0d1b2a"/>
+  <!-- ── HEADER ── -->
+  <text x="14" y="24" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#4a7fa5" letter-spacing="2">SYSTEM.INFO</text>
 
-  <!-- Traffic lights -->
-  <circle cx="36" cy="28" r="6" fill="#ff5f57"/>
-  <circle cx="56" cy="28" r="6" fill="#febc2e"/>
-  <circle cx="76" cy="28" r="6" fill="#28c840"/>
+  <!-- LIVE — moved left so it fits -->
+  <circle cx="526" cy="20" r="5" fill="#ff3b3b">
+    <animate attributeName="opacity" values="1;0.15;1" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="535" y="24" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#ff3b3b" letter-spacing="1">LIVE</text>
 
-  <!-- Title bar text -->
-  <text x="500" y="32" text-anchor="middle"
-    font-family="'Fira Code', 'Courier New', monospace"
-    font-size="12" fill="#4a7fa5">
-    frankwuaten2572@gmail.com — % ./profile.sh --live
-  </text>
+  <!-- Email badge -->
+  <rect x="14" y="32" width="190" height="19" rx="4" fill="#5b2d8e"/>
+  <text x="22" y="45" font-family="'Fira Code','Courier New',monospace" font-size="10.5" fill="#ffffff">frankwuaten2572@gmail.com</text>
 
-  <!-- Divider under title bar -->
-  <line x1="10" y1="46" x2="990" y2="46" stroke="#1a3a5c" stroke-width="1"/>
+  <!-- Top divider -->
+  <line x1="14" y1="60" x2="566" y2="60" stroke="#1a3a5c" stroke-width="0.5"/>
 
-  <!-- ── LEFT PANEL — GIF ── -->
-  <image href="https://raw.githubusercontent.com/Frankwtn/Frankwtn/main/system-infocard.gif"
-    x="20" y="54" width="395" height="446" preserveAspectRatio="xMidYMid meet"/>
+  <!--
+    DOTS SYSTEM:
+    - Label ends at x_label_end
+    - Value anchored at x=566 text-anchor="end"
+    - Dashed line from (x_label_end+4) to (566 - value_width - 4)
+    - font-size 11, monospace ~6.6px/char
+    - label widths (chars × 6.6):
+        Subject     = 7ch = 46px  → ends at 14+46 = 60
+        Role        = 4ch = 26px  → ends at 14+26 = 40
+        Origin      = 6ch = 40px  → ends at 14+40 = 54
+        Education   = 9ch = 59px  → ends at 14+59 = 73
+        Status      = 6ch = 40px  → ends at 14+40 = 54
+        Toolchain   = 9ch = 59px  → ends at 14+59 = 73
+        Core. Lang      = 10ch = 66px → 14+66 = 80
+        Core. Frontend  = 14ch = 92px → 14+92 = 106
+        Core. Backend   = 13ch = 86px → 14+86 = 100
+        Core Database   = 13ch = 86px → 14+86 = 100
+        Core. Infra     = 11ch = 73px → 14+73 = 87
+        - Contact       = 9ch  = 59px → 14+59 = 73
+        Grid. Mail      = 10ch = 66px → 14+66 = 80
+        Grid. Portofolio= 16ch =106px → 14+106=120
+        Grid Linkedin   = 13ch = 86px → 14+86 = 100
+        Grid. Github    = 12ch = 79px → 14+79 = 93
+        Grid. Facebook  = 14ch = 92px → 14+92 = 106
+  -->
 
-  <!-- Left/right divider -->
-  <line x1="425" y1="50" x2="425" y2="505" stroke="#1a3a5c" stroke-width="1"/>
-
-  <!-- ── RIGHT PANEL — SYSTEM.INFO ── -->
-  <g clip-path="url(#rightClip)">
-
-    <!-- SYSTEM.INFO header -->
-    <text x="440" y="78"
-      font-family="'Fira Code', 'Courier New', monospace"
-      font-size="11" fill="#4a7fa5" letter-spacing="2">
-      SYSTEM.INFO
-    </text>
-
-    <!-- LIVE indicator -->
-    <circle cx="960" cy="74" r="5" fill="#ff3b3b">
-      <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/>
-    </circle>
-    <text x="970" y="78"
-      font-family="'Fira Code', 'Courier New', monospace"
-      font-size="11" fill="#ff3b3b" letter-spacing="1">
-      LIVE
-    </text>
-
-    <!-- Email badge -->
-    <rect x="440" y="86" width="195" height="20" rx="4" fill="#5b2d8e"/>
-    <text x="448" y="100"
-      font-family="'Fira Code', 'Courier New', monospace"
-      font-size="11" fill="#ffffff">
-      frankwuaten2572@gmail.com
-    </text>
-
-    <!-- ── INFO ROWS — revealed by scan ── -->
-    <!-- Each row: label (cyan) + dots + value (white), opacity animated with delay -->
-
-    <!-- Row 1: Subject -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.08;0.14;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="128" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Subject</text>
-      <text x="508" y="128" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="128" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">Frank Emmanuel Wuaten</text>
-    </g>
-
-    <!-- Row 2: Role -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.13;0.19;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="150" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Role</text>
-      <text x="475" y="150" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="150" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">Web. Developer &amp; Creative UI Designer</text>
-    </g>
-
-    <!-- Row 3: Origin -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.18;0.24;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="172" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Origin</text>
-      <text x="488" y="172" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="172" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">Batam, Indonesia</text>
-    </g>
-
-    <!-- Row 4: Education -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.23;0.29;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="194" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Education</text>
-      <text x="511" y="194" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="194" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">Computer Science, Sam Ratulangi University</text>
-    </g>
-
-    <!-- Row 5: Status -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.28;0.34;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="216" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Status</text>
-      <text x="487" y="216" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="216" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">Building &amp; Learning</text>
-    </g>
-
-    <!-- Row 6: Toolchain -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.33;0.39;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="238" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Toolchain</text>
-      <text x="511" y="238" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="238" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">VSCode, Git, Figma, AI IDE (Antigravity &amp; Kiro)</text>
-    </g>
-
-    <!-- Spacer row -->
-
-    <!-- Row 7: Core.Lang -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.40;0.46;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="264" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Core. Lang</text>
-      <text x="518" y="264" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="264" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#4a7fa5">--</text>
-    </g>
-
-    <!-- Row 8: Core.Frontend -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.45;0.51;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="286" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Core. Frontend</text>
-      <text x="538" y="286" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="286" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#4a7fa5">--</text>
-    </g>
-
-    <!-- Row 9: Core.Backend -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.50;0.56;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="308" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Core. Backend</text>
-      <text x="536" y="308" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="308" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#4a7fa5">--</text>
-    </g>
-
-    <!-- Row 10: Core.Database -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.61;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="330" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Core Database</text>
-      <text x="537" y="330" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="330" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">Supabase</text>
-    </g>
-
-    <!-- Row 11: Core.Infra -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.60;0.66;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="352" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Core. Infra</text>
-      <text x="514" y="352" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="352" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">Vercel &amp; Git</text>
-    </g>
-
-    <!-- Contact header -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.65;0.71;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="378" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#4a7fa5">- Contact</text>
-      <text x="520" y="378" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#1a3a5c" letter-spacing="1.5">............................................................</text>
-    </g>
-
-    <!-- Row 12: Grid.Mail -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.69;0.75;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="398" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Grid. Mail</text>
-      <text x="514" y="398" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="398" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">frankwuaten2572@gmail.com</text>
-    </g>
-
-    <!-- Row 13: Grid.Portfolio -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.73;0.79;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="418" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Grid. Portofolio</text>
-      <text x="545" y="418" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="418" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">https://portofolio-project-indol.vercel.app/</text>
-    </g>
-
-    <!-- Row 14: Grid.Linkedin -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.77;0.83;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="438" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Grid Linkedin</text>
-      <text x="534" y="438" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="438" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#4a7fa5">Coming Soon</text>
-    </g>
-
-    <!-- Row 15: Grid.Github -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.81;0.87;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="458" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Grid. Github</text>
-      <text x="528" y="458" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="458" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#e2e8f0">Frankwtn</text>
-    </g>
-
-    <!-- Row 16: Grid.Facebook -->
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.85;0.91;1" dur="4s" fill="freeze" begin="0.3s"/>
-      <text x="440" y="478" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#22d3ee">Grid. Facebook</text>
-      <text x="541" y="478" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#2a5a7a" letter-spacing="1.5">............................................................</text>
-      <text x="978" y="478" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11.5" fill="#4a7fa5">Coming soon</text>
-    </g>
-
-    <!-- ── SCAN LINE — moves top to bottom ── -->
-    <rect x="430" y="60" width="555" height="40" fill="url(#scanLight)">
-      <animate attributeName="y" values="60;490;490" keyTimes="0;0.92;1" dur="4s" fill="freeze" begin="0.3s"/>
-    </rect>
-
+  <!-- ── ROW: Subject ── label_end=60, value="Frank Emmanuel Wuaten" 21ch→139px, val_start=566-139=427 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="0.2s"/>
+    <text x="14"  y="82" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Subject</text>
+    <line x1="64" y1="78" x2="423" y2="78" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="82" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">Frank Emmanuel Wuaten</text>
   </g>
 
-  <!-- ── BOTTOM BAR ── -->
-  <line x1="10" y1="494" x2="990" y2="494" stroke="#1a3a5c" stroke-width="1"/>
+  <!-- ── ROW: Role ── label_end=40, value="Web. Developer & Creative UI Designer" 37ch→244px, val_start=566-244=322 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="0.45s"/>
+    <text x="14"  y="104" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Role</text>
+    <line x1="44" y1="100" x2="318" y2="100" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="104" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">Web. Developer &amp; Creative UI Designer</text>
+  </g>
 
-  <!-- Bottom text -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.90;0.96;1" dur="4s" fill="freeze" begin="0.3s"/>
-    <text x="500" y="506" text-anchor="middle"
-      font-family="'Fira Code', 'Courier New', monospace"
-      font-size="11" fill="#4a7fa5">
-      • More about me &amp; projects below in README
-    </text>
-    <!-- Blinking cursor block -->
-    <rect x="758" y="496" width="9" height="12" fill="#00e5ff">
-      <animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/>
+  <!-- ── ROW: Origin ── label_end=54, value="Batam, Indonesia" 16ch→106px, val_start=566-106=460 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="0.7s"/>
+    <text x="14"  y="126" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Origin</text>
+    <line x1="58" y1="122" x2="456" y2="122" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="126" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">Batam, Indonesia</text>
+  </g>
+
+  <!-- ── ROW: Education ── label_end=73, value="Computer Science, Sam Ratulangi University" 42ch→277px, val_start=566-277=289 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="0.95s"/>
+    <text x="14"  y="148" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Education</text>
+    <line x1="77" y1="144" x2="285" y2="144" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="148" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">Computer Science, Sam Ratulangi University</text>
+  </g>
+
+  <!-- ── ROW: Status ── label_end=54, value="Building & Learning" 19ch→125px, val_start=566-125=441 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="1.2s"/>
+    <text x="14"  y="170" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Status</text>
+    <line x1="58" y1="166" x2="437" y2="166" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="170" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">Building &amp; Learning</text>
+  </g>
+
+  <!-- ── ROW: Toolchain ── label_end=73, value="VSCode, Git, Figma, AI IDE (Antigravity & Kiro)" 47ch→310px, val_start=566-310=256 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="1.45s"/>
+    <text x="14"  y="192" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Toolchain</text>
+    <line x1="77" y1="188" x2="252" y2="188" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="192" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">VSCode, Git, Figma, AI IDE (Antigravity &amp; Kiro)</text>
+  </g>
+
+  <!-- Section divider -->
+  <line x1="14" y1="202" x2="566" y2="202" stroke="#1a3a5c" stroke-width="0.5" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.1s" fill="freeze" begin="1.6s"/>
+  </line>
+
+  <!-- ── ROW: Core. Lang ── label_end=80, value="JavaScript, HTML, CSS" 21ch→139px, val_start=427 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="1.7s"/>
+    <text x="14"  y="220" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Core. Lang</text>
+    <line x1="84" y1="216" x2="423" y2="216" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="220" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">JavaScript, HTML, CSS</text>
+  </g>
+
+  <!-- ── ROW: Core. Frontend ── label_end=106, value="React, Vite, Tailwind CSS" 25ch→165px, val_start=401 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="1.9s"/>
+    <text x="14"  y="242" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Core. Frontend</text>
+    <line x1="110" y1="238" x2="397" y2="238" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="242" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">React, Vite, Tailwind CSS</text>
+  </g>
+
+  <!-- ── ROW: Core. Backend ── label_end=100, value="Node.js" 7ch→46px, val_start=520 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="2.1s"/>
+    <text x="14"  y="264" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Core. Backend</text>
+    <line x1="104" y1="260" x2="516" y2="260" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="264" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">Node.js</text>
+  </g>
+
+  <!-- ── ROW: Core Database ── label_end=100, value="Supabase" 8ch→53px, val_start=513 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="2.3s"/>
+    <text x="14"  y="286" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Core Database</text>
+    <line x1="104" y1="282" x2="509" y2="282" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="286" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">Supabase</text>
+  </g>
+
+  <!-- ── ROW: Core. Infra ── label_end=87, value="Vercel & Git" 12ch→79px, val_start=487 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="2.5s"/>
+    <text x="14"  y="308" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Core. Infra</text>
+    <line x1="91" y1="304" x2="483" y2="304" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="308" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">Vercel &amp; Git</text>
+  </g>
+
+  <!-- Section divider -->
+  <line x1="14" y1="318" x2="566" y2="318" stroke="#1a3a5c" stroke-width="0.5" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.1s" fill="freeze" begin="2.6s"/>
+  </line>
+
+  <!-- ── ROW: - Contact ── -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="2.7s"/>
+    <text x="14"  y="336" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#4a7fa5">- Contact</text>
+    <line x1="77" y1="332" x2="566" y2="332" stroke="#132030" stroke-width="1" stroke-dasharray="2,3"/>
+  </g>
+
+  <!-- ── ROW: Grid. Mail ── label_end=80, value="frankwuaten2572@gmail.com" 25ch→165px, val_start=401 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="2.9s"/>
+    <text x="14"  y="356" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Grid. Mail</text>
+    <line x1="84" y1="352" x2="397" y2="352" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="356" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">frankwuaten2572@gmail.com</text>
+  </g>
+
+  <!-- ── ROW: Grid. Portofolio ── label_end=120, value="https://portofolio-project-indol.vercel.app/" 44ch→290px, val_start=276 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="3.1s"/>
+    <text x="14"  y="378" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Grid. Portofolio</text>
+    <line x1="124" y1="374" x2="272" y2="374" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="378" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">https://portofolio-project-indol.vercel.app/</text>
+  </g>
+
+  <!-- ── ROW: Grid Linkedin ── label_end=100, value="Coming Soon" 11ch→73px, val_start=493 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="3.3s"/>
+    <text x="14"  y="400" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Grid Linkedin</text>
+    <line x1="104" y1="396" x2="489" y2="396" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="400" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#4a7fa5">Coming Soon</text>
+  </g>
+
+  <!-- ── ROW: Grid. Github ── label_end=93, value="Frankwtn" 8ch→53px, val_start=513 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="3.5s"/>
+    <text x="14"  y="422" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Grid. Github</text>
+    <line x1="97" y1="418" x2="509" y2="418" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="422" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#e2e8f0">Frankwtn</text>
+  </g>
+
+  <!-- ── ROW: Grid. Facebook ── label_end=106, value="Coming soon" 11ch→73px, val_start=493 -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="3.7s"/>
+    <text x="14"  y="444" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#22d3ee">Grid. Facebook</text>
+    <line x1="110" y1="440" x2="489" y2="440" stroke="#1e3a52" stroke-width="1" stroke-dasharray="2,3"/>
+    <text x="566" y="444" text-anchor="end" font-family="'Fira Code','Courier New',monospace" font-size="11" fill="#4a7fa5">Coming soon</text>
+  </g>
+
+  <!-- ── SCAN LINE ── -->
+  <rect x="0" y="60" width="580" height="34" fill="url(#scan)">
+    <animate attributeName="y"       values="60;448;448"  keyTimes="0;0.94;1" dur="4s" fill="freeze" begin="0.1s"/>
+    <animate attributeName="opacity" values="1;1;0"       keyTimes="0;0.94;1" dur="4s" fill="freeze" begin="0.1s"/>
+  </rect>
+
+  <!-- ── BOTTOM BAR ── -->
+  <line x1="0" y1="460" x2="580" y2="460" stroke="#1a3a5c" stroke-width="0.8"/>
+
+  <!-- Bottom text + blinking cursor -->
+  <g opacity="0"><animate attributeName="opacity" values="0;1" dur="0.25s" fill="freeze" begin="3.9s"/>
+    <!-- "• More about me & projects below in README " = 44ch, centered at 290 -->
+    <!-- cursor sits right after the text: 290 + (44ch×6.6/2) = 290+145=435, but text-anchor middle so end is at ~290+145=435 -->
+    <text x="283" y="480"
+      font-family="'Fira Code','Courier New',monospace"
+      font-size="10.5" fill="#4a7fa5" text-anchor="middle">• More about me &amp; projects below in README</text>
+    <!-- cursor: text ends at ~283 + 22*6.6 = 283+145=428 → place cursor at 430 -->
+    <rect x="430" y="469" width="8" height="12" fill="#00e5ff">
+      <animate attributeName="opacity" values="1;0;1" dur="0.85s" repeatCount="indefinite"/>
     </rect>
   </g>
 
