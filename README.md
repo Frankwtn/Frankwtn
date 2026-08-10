@@ -1,7 +1,4 @@
-<!-- ===== WAVE HEADER ===== -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=header" />
-
-<!-- ===== VISITOR + TYPING ===== -->
+<!-- ===== PROFILE HEADER ===== -->
 <div align="center">
 
 <a href="https://komarev.com/ghpvc/?username=Frankwtn">
@@ -11,8 +8,9 @@
 <br/><br/>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=3000&pause=800&color=22D3EE&center=true&vCenter=true&multiline=false&width=600&lines=Full-Stack+Developer;React+%26+Supabase+Enthusiast;Building+Heritage+Nusantara+%F0%9F%87%AE%F0%9F%87%A9;Open+to+Collaborate!" />
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=3000&pause=800&color=0891B2&center=true&vCenter=true&multiline=false&width=600&lines=Full-Stack+Developer;React+%26+Supabase+Enthusiast;Building+Heritage+Nusantara+%F0%9F%87%AE%F0%9F%87%A9;Open+to+Collaborate!" alt="Typing SVG" />
+  <source media="(prefers-color-scheme: dark)"  srcset="https://raw.githubusercontent.com/Frankwtn/Frankwtn/main/dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Frankwtn/Frankwtn/main/light.svg" />
+  <img width="100%" src="https://raw.githubusercontent.com/Frankwtn/Frankwtn/main/dark.svg" alt="Frank Emmanuel Wuaten" />
 </picture>
 
 </div>
@@ -54,16 +52,28 @@
 <br/><br/>
 
 <!-- Languages -->
-<img src="https://skillicons.dev/icons?i=js,html,css&theme=dark" alt="Languages" />
+<picture>
+  <source media="(prefers-color-scheme: dark)"  srcset="https://skillicons.dev/icons?i=js,html,css&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=js,html,css&theme=light" alt="Languages" />
+</picture>
 <br/>
 <!-- Frontend -->
-<img src="https://skillicons.dev/icons?i=react,vite,tailwind&theme=dark" alt="Frontend" />
+<picture>
+  <source media="(prefers-color-scheme: dark)"  srcset="https://skillicons.dev/icons?i=react,vite,tailwind&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=react,vite,tailwind&theme=light" alt="Frontend" />
+</picture>
 <br/>
 <!-- Backend & DB -->
-<img src="https://skillicons.dev/icons?i=supabase,postgresql&theme=dark" alt="Backend and DB" />
+<picture>
+  <source media="(prefers-color-scheme: dark)"  srcset="https://skillicons.dev/icons?i=supabase,postgresql&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=supabase,postgresql&theme=light" alt="Backend and DB" />
+</picture>
 <br/>
 <!-- Tools -->
-<img src="https://skillicons.dev/icons?i=git,github,vscode,figma&theme=dark" alt="Tools" />
+<picture>
+  <source media="(prefers-color-scheme: dark)"  srcset="https://skillicons.dev/icons?i=git,github,vscode,figma&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=git,github,vscode,figma&theme=light" alt="Tools" />
+</picture>
 
 </div>
 
@@ -130,13 +140,10 @@
   <img src="https://img.shields.io/badge/GitHub-0A101F?style=for-the-badge&logo=github&logoColor=F8FAFC&labelColor=0A101F" alt="GitHub" />
 </a>
 &nbsp;
-<a href="frankwuaten2572@gmail.com">
+<a href="mailto:frankwuaten2572@gmail.com">
   <img src="https://img.shields.io/badge/Email-0A101F?style=for-the-badge&logo=gmail&logoColor=10B981&labelColor=0A101F" alt="Email" />
 </a>
 
 </div>
 
-<br/>
 
-<!-- ===== WAVE FOOTER ===== -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" />
